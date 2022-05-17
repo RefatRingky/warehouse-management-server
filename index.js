@@ -95,20 +95,7 @@ async function run() {
             const result = await itemCollection.updateOne(filter, updateDoc, options);
             res.send(result)
         });
-        // myitem
-        app.get('/myitem', verifyJWT, async (req, res) => {
-            const decodedEmail = req?.decoded?.email;
-            const email = req?.query?.email;
-            if (email === decodedEmail) {
-                const query = { email: email };
-                const cursor = itemCollection.find(query);
-                const items = await cursor.toArray();
-                res.send(items);
-            }
-            else {
-                res.status(403).send({ message: 'Forbidden access' })
-            }
-        })
+        
 
         // use jwt
         app.post('/login', (req, res) => {
