@@ -110,7 +110,12 @@ async function run() {
             }
         })
 
-        
+        // use jwt
+        app.post('/login', (req, res) => {
+            const email = req.body;
+            const token = jwt.sign(email, process.env.SECRET_KEY)
+            res.send({ token });
+        })
 
 
     }
